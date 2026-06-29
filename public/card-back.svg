@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 0 405 525" width="405" height="525">
+  <defs>
+    <!-- Star arm gradient -->
+    <linearGradient id="starGrad" x1="25%" y1="15%" x2="75%" y2="85%">
+      <stop offset="0%" stop-color="#484848"/>
+      <stop offset="55%" stop-color="#242424"/>
+      <stop offset="100%" stop-color="#0d0d0d"/>
+    </linearGradient>
+
+    <!-- Central orb (3D sphere) -->
+    <radialGradient id="orbGrad" cx="36%" cy="28%" r="66%">
+      <stop offset="0%"   stop-color="#3e3e3e"/>
+      <stop offset="30%"  stop-color="#222222"/>
+      <stop offset="70%"  stop-color="#0e0e0e"/>
+      <stop offset="100%" stop-color="#030303"/>
+    </radialGradient>
+
+    <!-- Shadow blob inside orb -->
+    <radialGradient id="shadowBlob" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ── Star symbol (center 187, 262) ── -->
+
+  <!--
+    4 cardinal spike triangles — 4× the diagonal spike length (4×30=120px beyond orb).
+    Tips at r=198 from center. Base spans ±15° on orb circle (r=78).
+
+    top    tip(187, 64)   base: 255°(167,187) → 285°(207,187)
+    right  tip(385,262)   base: 345°(262,242) → 15°(262,282)
+    bottom tip(187,460)   base:  75°(207,337) → 105°(167,337)
+    left   tip(-11,262)   base: 165°(112,282) → 195°(112,242)
+  -->
+  <polygon points="187,64   167,187  207,187" fill="url(#starGrad)"/>
+  <polygon points="385,262  262,242  262,282" fill="url(#starGrad)"/>
+  <polygon points="187,460  207,337  167,337" fill="url(#starGrad)"/>
+  <polygon points="-11,262  112,282  112,242" fill="url(#starGrad)"/>
+
+  <!--
+    Diagonal spikes — narrow isosceles triangles.
+    Base: two points on orb edge (r=78) at ±8° from spike angle.
+    Tip:  one point at r=108 on spike angle.
+    No cubing — base spans only ~22px across.
+
+    315° upper-right: base (234,200),(249,215)  tip (263,186)
+    45°  lower-right: base (249,309),(234,324)  tip (263,338)
+    135° lower-left:  base (140,324),(125,309)  tip (111,338)
+    225° upper-left:  base (125,215),(140,200)  tip (111,186)
+  -->
+  <polygon points="234,200 249,215 263,186" fill="#141414"/>
+  <polygon points="249,309 234,324 263,338" fill="#141414"/>
+  <polygon points="140,324 125,309 111,338" fill="#141414"/>
+  <polygon points="125,215 140,200 111,186" fill="#141414"/>
+
+  <!-- Central orb -->
+  <circle cx="187" cy="262" r="78" fill="url(#orbGrad)"/>
+
+  <!-- Deep shadow inside orb -->
+  <ellipse cx="182" cy="295" rx="44" ry="32" fill="url(#shadowBlob)" opacity="0.9"/>
+</svg>

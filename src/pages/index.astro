@@ -171,33 +171,33 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     aspect-ratio: 2/3;
     border-radius: 8px;
-    background: linear-gradient(
-      105deg,
-      #1a0a0a 35%,
-      rgba(220, 120, 60, 0.12) 50%,
-      #1a0a0a 65%
-    );
-    background-size: 250% 100%;
-    border: 1px solid var(--color-accent);
+    background-color: #f0ede8;
+    background-image: url('/card-back.svg');
+    background-size: 88%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--color-accent);
     margin-bottom: 0.75rem;
     position: relative;
     overflow: hidden;
+  }
+
+  .card-art::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(220, 120, 60, 0.08) 50%,
+      transparent 65%
+    );
+    background-size: 250% 100%;
     animation: card-shimmer 4s ease-in-out infinite;
   }
 
-  .preview-card:nth-child(2) .card-art { animation-delay: 1s; }
-  .preview-card:nth-child(3) .card-art { animation-delay: 2s; }
-
-  .card-art::after {
-    content: '🐾';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    opacity: 0.3;
-  }
+  .preview-card:nth-child(2) .card-art::before { animation-delay: 1s; }
+  .preview-card:nth-child(3) .card-art::before { animation-delay: 2s; }
 
   .card-name {
     font-family: var(--font-heading);
