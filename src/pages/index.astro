@@ -48,10 +48,17 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="section-title">Meet the Beasts</h2>
       <p class="section-subtitle">A glimpse of the creatures waiting to join your army.</p>
       <div class="preview-row">
-        {['Battle Penguin', 'Kitsune', 'Flame Phoenix'].map((name) => (
+        {[
+          { name: 'Battle Penguin', image: '/battle_penguin.png' },
+          { name: 'Kitsune',        image: '/kitsune.png' },
+          { name: 'Flame Phoenix' },
+        ].map((card) => (
           <div class="preview-card">
-            <div class="card-art"></div>
-            <p class="card-name">{name}</p>
+            <div class="card-flip-inner">
+              <div class="card-face card-face-front"></div>
+              <div class="card-face card-face-back" style={card.image ? `background-image:url('${card.image}')` : ''}></div>
+            </div>
+            <p class="card-name">{card.name}</p>
           </div>
         ))}
       </div>
@@ -160,30 +167,47 @@ import Layout from '../layouts/Layout.astro';
     flex-wrap: wrap;
   }
 
-  .card-art {
+  .preview-card {
+    width: 180px;
+    cursor: default;
+    perspective: 1000px;
+  }
+
+  .card-flip-inner {
     width: 100%;
     aspect-ratio: 2/3;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    margin-bottom: 0.75rem;
+  }
+
+  .preview-card:hover .card-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
     border-radius: 8px;
+    border: 2px solid var(--color-accent);
+    backface-visibility: hidden;
+  }
+
+  .card-face-front {
     background-color: #f0ede8;
     background-image: url('/card-back.svg');
     background-size: 88%;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid var(--color-accent);
-    margin-bottom: 0.75rem;
-    position: relative;
-    overflow: hidden;
   }
 
-  .preview-card {
-    width: 180px;
-    cursor: default;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .preview-card:hover {
-    transform: translateY(-6px) rotate(1deg);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  .card-face-back {
+    transform: rotateY(180deg);
+    background-color: #1a0a0a;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .card-name {
