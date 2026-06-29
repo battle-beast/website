@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About" description="The story behind Battle Beast playing cards.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Our Story</h1>
+
+      <div class="prose">
+        <p class="lead">
+          Battle Beast started at a kitchen table with too many card sleeves and not enough shelf space.
+        </p>
+
+        <p>
+          We were players first — collectors of every card game that came our way. But something was always missing: a game that felt primal, fast, and utterly ruthless. One where the creature on your card felt like it could leap off the table and fight for you.
+        </p>
+
+        <p>
+          So we made it ourselves.
+        </p>
+
+        <p>
+          Three years of playtesting, 100+ cards illustrated by independent artists, and more lost sleep than we care to admit — Battle Beast is the game we always wanted to play. It's strategic without being slow. It's collectible without being predatory. And every beast in the set was designed to feel genuinely dangerous.
+        </p>
+
+        <p>
+          We're an independent studio. Every sale goes directly into printing the next expansion and keeping the lights on. We appreciate every player who takes a chance on us.
+        </p>
+      </div>
+
+      <div class="values">
+        <div class="value">
+          <h3>Independent</h3>
+          <p>No corporate backing. No algorithmic card drops. Just us, the artists, and you.</p>
+        </div>
+        <div class="value">
+          <h3>Fair</h3>
+          <p>Every card is available without loot boxes. Buy a deck, know what you're getting.</p>
+        </div>
+        <div class="value">
+          <h3>Competitive</h3>
+          <p>Designed from day one for tournament play. Skill wins, not wallet size.</p>
+        </div>
+      </div>
+
+      <a href="/buy" class="btn btn-primary">Join the Fight</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .prose {
+    max-width: 680px;
+    margin-bottom: 4rem;
+  }
+
+  .prose p {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-size: 1.35rem !important;
+    color: var(--color-text) !important;
+    font-style: italic;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1.25rem;
+    margin-bottom: 2rem !important;
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .value {
+    padding: 1.5rem;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    background: #111;
+  }
+
+  .value h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .value p { font-size: 0.9rem; color: var(--color-muted); }
+</style>

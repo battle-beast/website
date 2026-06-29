@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Build Your Deck',
+    body: `Each player builds a deck of 30 cards before the game. You must include at least 10 Beast cards and no more than 3 copies of any single card. Choose your beasts wisely — each has unique power, defense, and special abilities.`,
+  },
+  {
+    n: '02',
+    title: 'Set Up the Arena',
+    body: `Each player starts with 20 Life Points. Shuffle your deck and draw 5 cards. The player who most recently saw a wild animal goes first. (No animal sightings? Flip a coin.)`,
+  },
+  {
+    n: '03',
+    title: 'Your Turn',
+    body: `On your turn: Draw 1 card → Play up to 2 cards from your hand → Declare attacks → End your turn. You may play Beast cards to your field or Action cards immediately for their effect.`,
+  },
+  {
+    n: '04',
+    title: 'Combat',
+    body: `Declare which of your beasts attacks which enemy beast (or the opponent directly). Compare Power vs. Defense. If attacker's Power exceeds defender's Defense, the defending beast is defeated. Excess damage carries over to the opponent's Life Points.`,
+  },
+  {
+    n: '05',
+    title: 'Special Abilities',
+    body: `Rare and Legendary beasts have abilities printed on their cards — triggered on play, on attack, or on defeat. Abilities can chain together for devastating combos. Read the card carefully before you play it.`,
+  },
+  {
+    n: '06',
+    title: 'Winning',
+    body: `Reduce your opponent's Life Points to 0 to win. If a player cannot draw a card at the start of their turn, they lose immediately. Best-of-three is the standard tournament format.`,
+  },
+];
+---
+
+<Layout title="How to Play" description="Learn how to play Battle Beast — rules, combat, and winning conditions.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">How to Play</h1>
+      <p class="section-subtitle">
+        Learn the rules in minutes. Master the strategy over hundreds of games.
+      </p>
+
+      <div class="steps">
+        {steps.map(({ n, title, body }) => (
+          <div class="step">
+            <span class="step-n">{n}</span>
+            <div class="step-content">
+              <h2>{title}</h2>
+              <p>{body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta-row">
+        <a href="/cards" class="btn btn-outline">Browse Cards</a>
+        <a href="/buy" class="btn btn-primary">Get Your Deck</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 4rem;
+  }
+
+  .step {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    opacity: 0.6;
+    min-width: 3rem;
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .step-content h2 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--color-accent);
+  }
+
+  .step-content p {
+    color: var(--color-muted);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const options = [
+  {
+    name: 'Starter Deck',
+    price: '$19.99',
+    description: '30-card pre-built deck. Perfect for new players. Includes quick-start guide.',
+    items: ['30 cards (10 Rare, 20 Common)', 'Quick-start guide', 'Card sleeves (30)'],
+    cta: 'Buy Starter Deck',
+    href: '#', // replace with real link
+    featured: false,
+  },
+  {
+    name: 'Battle Box',
+    price: '$49.99',
+    description: 'Two full decks + booster pack. Ready for a two-player duel right out of the box.',
+    items: ['2 × 30-card decks', '10-card booster pack', 'Playmat', 'Life point tracker'],
+    cta: 'Buy Battle Box',
+    href: '#', // replace with real link
+    featured: true,
+  },
+  {
+    name: 'Booster Pack',
+    price: '$5.99',
+    description: '10 random cards. 1 guaranteed Rare or higher per pack.',
+    items: ['10 random cards', '1 Rare or Legendary guaranteed', 'Foil chance: 1 in 3 packs'],
+    cta: 'Buy Booster',
+    href: '#', // replace with real link
+    featured: false,
+  },
+];
+---
+
+<Layout title="Buy" description="Get your Battle Beast deck. Starter decks, battle boxes, and booster packs available now.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Get Your Deck</h1>
+      <p class="section-subtitle">
+        Ships worldwide. All orders fulfilled within 3–5 business days.
+      </p>
+
+      <div class="options">
+        {options.map(({ name, price, description, items, cta, href, featured }) => (
+          <div class:list={['option', { featured }]}>
+            {featured && <span class="badge">Most Popular</span>}
+            <h2 class="option-name">{name}</h2>
+            <p class="option-price">{price}</p>
+            <p class="option-desc">{description}</p>
+            <ul class="option-items">
+              {items.map((item) => <li>{item}</li>)}
+            </ul>
+            <a href={href} class:list={['btn', featured ? 'btn-primary' : 'btn-outline']} target="_blank" rel="noopener">
+              {cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="note">
+        Looking for bulk / tournament orders?
+        <a href="mailto:hello@battlebeast.online">Get in touch →</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    align-items: start;
+  }
+
+  .option {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .option.featured {
+    border-color: var(--color-accent);
+    background: #140e00;
+  }
+
+  .badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .option-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .option-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading);
+  }
+
+  .option-desc {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .option-items {
+    list-style: none;
+    margin-bottom: 1.75rem;
+  }
+
+  .option-items li {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .option-items li::before { content: '✓'; color: var(--color-accent); }
+
+  .btn { width: 100%; text-align: center; }
+
+  .note {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    text-align: center;
+  }
+
+  .note a {
+    color: var(--color-accent);
+    transition: opacity 0.15s;
+  }
+
+  .note a:hover { opacity: 0.8; }
+</style>

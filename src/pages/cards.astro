@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const cards = [
+  { name: 'Iron Grizzly',    type: 'Beast',    power: 7, defense: 5, rarity: 'Rare' },
+  { name: 'Shadow Serpent',  type: 'Predator', power: 6, defense: 3, rarity: 'Uncommon' },
+  { name: 'Flame Phoenix',   type: 'Elemental',power: 9, defense: 2, rarity: 'Legendary' },
+  { name: 'Stone Golem',     type: 'Guardian', power: 3, defense: 9, rarity: 'Uncommon' },
+  { name: 'Thunder Wolf',    type: 'Beast',    power: 6, defense: 4, rarity: 'Common' },
+  { name: 'Void Dragon',     type: 'Predator', power: 10,defense: 6, rarity: 'Legendary' },
+  { name: 'Coral Hydra',     type: 'Beast',    power: 5, defense: 7, rarity: 'Rare' },
+  { name: 'Ember Lynx',      type: 'Elemental',power: 7, defense: 3, rarity: 'Common' },
+  { name: 'Frost Mammoth',   type: 'Guardian', power: 4, defense: 8, rarity: 'Uncommon' },
+  { name: 'Venom Mantis',    type: 'Predator', power: 8, defense: 2, rarity: 'Rare' },
+  { name: 'Storm Hawk',      type: 'Beast',    power: 5, defense: 4, rarity: 'Common' },
+  { name: 'Ash Wurm',        type: 'Elemental',power: 6, defense: 6, rarity: 'Uncommon' },
+];
+
+const rarityColor: Record<string, string> = {
+  Common:    '#888',
+  Uncommon:  '#4a9eff',
+  Rare:      '#c850c0',
+  Legendary: '#D4AF37',
+};
+---
+
+<Layout title="Cards" description="Browse all Battle Beast cards — beasts, predators, elementals, and guardians.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">The Cards</h1>
+      <p class="section-subtitle">
+        100+ creatures across four types. Each card has unique power, defense, and special abilities.
+      </p>
+
+      <div class="grid">
+        {cards.map((card) => (
+          <article class="card">
+            <div class="card-art">
+              <span class="card-type-badge" style={`color:${rarityColor[card.rarity]};border-color:${rarityColor[card.rarity]}`}>
+                {card.rarity}
+              </span>
+            </div>
+            <div class="card-body">
+              <h2 class="card-name">{card.name}</h2>
+              <p class="card-type">{card.type}</p>
+              <div class="stats">
+                <span title="Power">⚔ {card.power}</span>
+                <span title="Defense">🛡 {card.defense}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+  }
+
+  .card-art {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 60%, #1a0a0a 100%);
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0.75rem;
+  }
+
+  .card-type-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-family: var(--font-heading);
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-type {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .stats span { display: flex; align-items: center; gap: 0.25rem; }
+</style>

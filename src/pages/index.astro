@@ -2,6 +2,186 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Home">
-  <p>Home page coming soon.</p>
+<Layout title="Home" description="Battle Beast — the ultimate playing card game. Build your beast army and crush your opponents.">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">The Ultimate Card Duel</p>
+      <h1>Battle<br /><span class="accent">Beast</span></h1>
+      <p class="hero-sub">
+        Summon legendary beasts, forge your strategy, and fight for dominance.
+        A competitive card game for 2–4 players.
+      </p>
+      <div class="hero-cta">
+        <a href="/buy" class="btn btn-primary">Get Your Deck</a>
+        <a href="/how-to-play" class="btn btn-outline">How to Play</a>
+      </div>
+    </div>
+    <div class="hero-glow"></div>
+  </section>
+
+  <!-- Teaser -->
+  <section class="section teaser">
+    <div class="container teaser-grid">
+      <div class="teaser-card">
+        <span class="teaser-icon">⚔️</span>
+        <h3>Strategic Combat</h3>
+        <p>Every card is a weapon. Build combos, predict your opponent, and strike at the right moment.</p>
+      </div>
+      <div class="teaser-card">
+        <span class="teaser-icon">🐉</span>
+        <h3>100+ Beasts</h3>
+        <p>From dire wolves to ancient dragons — discover, collect, and master every creature in the set.</p>
+      </div>
+      <div class="teaser-card">
+        <span class="teaser-icon">🃏</span>
+        <h3>Fast Games</h3>
+        <p>15–30 minute sessions. Easy to learn, hard to master. Perfect for game nights and tournaments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards preview -->
+  <section class="section preview">
+    <div class="container">
+      <h2 class="section-title">Meet the Beasts</h2>
+      <p class="section-subtitle">A glimpse of the creatures waiting to join your army.</p>
+      <div class="preview-row">
+        {['Iron Grizzly', 'Shadow Serpent', 'Flame Phoenix'].map((name) => (
+          <div class="preview-card">
+            <div class="card-art"></div>
+            <p class="card-name">{name}</p>
+          </div>
+        ))}
+      </div>
+      <a href="/cards" class="btn btn-outline" style="margin-top:2.5rem">View All Cards</a>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 6rem 0 4rem;
+  }
+
+  .hero .container { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .accent { color: var(--color-primary); }
+
+  .hero-sub {
+    max-width: 480px;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .hero-glow {
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Teaser */
+  .teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .teaser-card {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .teaser-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .teaser-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  .teaser-card p { color: var(--color-muted); font-size: 0.95rem; }
+
+  /* Cards preview */
+  .preview { text-align: center; }
+  .preview .section-subtitle { margin-inline: auto; }
+
+  .preview-row {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .preview-card { width: 180px; }
+
+  .card-art {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 50%, #1a0a0a 100%);
+    border: 1px solid var(--color-accent);
+    margin-bottom: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-art::after {
+    content: '🐾';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    opacity: 0.3;
+  }
+
+  .card-name {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+  }
+</style>
