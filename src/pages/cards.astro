@@ -35,7 +35,7 @@ const rarityColor: Record<string, string> = {
       <div class="grid">
         {cards.map((card) => (
           <article class="card">
-            <div class="card-art" style={card.image ? `background-image:url('${card.image}');background-size:cover;background-position:center;` : ''}>
+            <div class="card-art" style={card.image ? `background-image:url('${card.image}');background-size:contain;background-position:center;background-repeat:no-repeat;` : ''}>
               {!card.image && (
                 <span class="card-type-badge" style={`color:${rarityColor[card.rarity]};border-color:${rarityColor[card.rarity]}`}>
                   {card.rarity}
