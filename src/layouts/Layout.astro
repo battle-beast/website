@@ -1,0 +1,166 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Battle Beast — the ultimate playing card game.' } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  { label: 'Cards',       href: '/cards' },
+  { label: 'How to Play', href: '/how-to-play' },
+  { label: 'About',       href: '/about' },
+  { label: 'Buy',         href: '/buy' },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title} — Battle Beast</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="logo">Battle Beast</a>
+        <nav>
+          <ul>
+            {nav.map(({ label, href }) => (
+              <li>
+                <a href={href} class:list={[{ active: currentPath.startsWith(href) }]}>
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="/buy" class="btn-buy">Buy Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span class="logo">Battle Beast</span>
+        <p class="copyright">&copy; {new Date().getFullYear()} Battle Beast. All rights reserved.</p>
+        <ul class="social">
+          <li><a href="#" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="TikTok">TikTok</a></li>
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid #1f1f1f;
+    backdrop-filter: blur(6px);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.75rem;
+  }
+
+  nav ul a {
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    color: var(--color-muted);
+    transition: color 0.15s;
+  }
+
+  nav ul a:hover,
+  nav ul a.active {
+    color: var(--color-text);
+  }
+
+  .btn-buy {
+    background: var(--color-primary);
+    color: var(--color-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-buy:hover { background: #a93226; }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid #1f1f1f;
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+  }
+
+  .site-footer .container {
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+
+  .social {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+  }
+
+  .social a {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    transition: color 0.15s;
+  }
+
+  .social a:hover { color: var(--color-accent); }
+</style>
