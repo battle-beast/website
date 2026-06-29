@@ -103,6 +103,16 @@ import Layout from '../layouts/Layout.astro';
 
   .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+  @keyframes glow-breathe {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  @keyframes card-shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+
   .hero-glow {
     position: absolute;
     top: 10%;
@@ -112,6 +122,7 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 50%;
     background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
     pointer-events: none;
+    animation: glow-breathe 8s ease-in-out infinite;
   }
 
   /* Teaser */
@@ -160,12 +171,22 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     aspect-ratio: 2/3;
     border-radius: 8px;
-    background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 50%, #1a0a0a 100%);
+    background: linear-gradient(
+      105deg,
+      #1a0a0a 35%,
+      rgba(220, 120, 60, 0.12) 50%,
+      #1a0a0a 65%
+    );
+    background-size: 250% 100%;
     border: 1px solid var(--color-accent);
     margin-bottom: 0.75rem;
     position: relative;
     overflow: hidden;
+    animation: card-shimmer 4s ease-in-out infinite;
   }
+
+  .preview-card:nth-child(2) .card-art { animation-delay: 1s; }
+  .preview-card:nth-child(3) .card-art { animation-delay: 2s; }
 
   .card-art::after {
     content: '🐾';
