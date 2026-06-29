@@ -108,12 +108,7 @@ import Layout from '../layouts/Layout.astro';
     50%       { opacity: 0.5; transform: scale(1.2); }
   }
 
-  @keyframes card-shimmer {
-    0%   { background-position: -200% 0; }
-    100% { background-position:  200% 0; }
-  }
-
-  .hero-glow {
+.hero-glow {
     position: absolute;
     top: 10%;
     right: -10%;
@@ -165,8 +160,6 @@ import Layout from '../layouts/Layout.astro';
     flex-wrap: wrap;
   }
 
-  .preview-card { width: 180px; }
-
   .card-art {
     width: 100%;
     aspect-ratio: 2/3;
@@ -182,22 +175,16 @@ import Layout from '../layouts/Layout.astro';
     overflow: hidden;
   }
 
-  .card-art::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 35%,
-      rgba(220, 120, 60, 0.08) 50%,
-      transparent 65%
-    );
-    background-size: 250% 100%;
-    animation: card-shimmer 4s ease-in-out infinite;
+  .preview-card {
+    width: 180px;
+    cursor: default;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .preview-card:nth-child(2) .card-art::before { animation-delay: 1s; }
-  .preview-card:nth-child(3) .card-art::before { animation-delay: 2s; }
+  .preview-card:hover {
+    transform: translateY(-6px) rotate(1deg);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
 
   .card-name {
     font-family: var(--font-heading);
