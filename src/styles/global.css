@@ -37,6 +37,10 @@ main { flex: 1; }
   padding: 5rem 0;
 }
 
+@media (max-width: 680px) {
+  .section { padding: 3rem 0; }
+}
+
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
