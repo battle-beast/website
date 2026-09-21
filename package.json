@@ -14,7 +14,7 @@
     "format": "oxfmt src"
   },
   "dependencies": {
-    "astro": "^7.3.2"
+    "astro": "^7.3.3"
   },
   "devDependencies": {
     "oxfmt": "^0.68.0",
