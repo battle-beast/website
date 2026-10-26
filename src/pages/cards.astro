@@ -7,7 +7,7 @@ const cards = [
     type: "Water",
     power: 100,
     defense: 150,
-    rarity: "Rare",
+    rarity: "Uncommon",
     image: "/battle_penguin.png",
   },
   {
@@ -23,7 +23,7 @@ const cards = [
     type: "Fire",
     power: 350,
     defense: 250,
-    rarity: "Legendary",
+    rarity: "Uncommon",
     image: "/flaming_phoenix.png",
   },
   {
@@ -39,7 +39,7 @@ const cards = [
     type: "Lightning",
     power: 300,
     defense: 200,
-    rarity: "Common",
+    rarity: "Uncommon",
     image: "/thunder_wolf.png",
   },
   {
@@ -55,7 +55,7 @@ const cards = [
     type: "Poison",
     power: 850,
     defense: 1350,
-    rarity: "Legendary",
+    rarity: "Ultra Rare",
     image: "/venom_mantis.png",
   },
   {
@@ -87,18 +87,18 @@ const cards = [
     type: "Wind",
     power: 650,
     defense: 800,
-    rarity: "Legendary",
+    rarity: "Ultra Rare",
     image: "/giant_cloud.png",
   },
-  { name: "Dragon Claw", type: "Item", rarity: "Common", image: "/dragon_claw.png" },
-  { name: "Metal Shield", type: "Item", rarity: "Common", image: "/metal_shield.png" },
-  { name: "Fossil of Healing", type: "Item", rarity: "Common", image: "/fossil_of_healing.png" },
+  { name: "Dragon Claw", type: "Item", image: "/dragon_claw.png" },
+  { name: "Metal Shield", type: "Item", image: "/metal_shield.png" },
+  { name: "Fossil of Healing", type: "Item", image: "/fossil_of_healing.png" },
   {
     name: "Demonic Goblin",
     type: "Demon",
     power: 950,
     defense: 1100,
-    rarity: "Legendary",
+    rarity: "Ultra Rare",
     image: "/demonic_goblin.png",
   },
   {
@@ -115,6 +115,7 @@ const rarityColor: Record<string, string> = {
   Common:    '#888',
   Uncommon:  '#4a9eff',
   Rare:      '#c850c0',
+  'Ultra Rare': '#ff6b35',
   Legendary: '#D4AF37',
 };
 ---
@@ -130,16 +131,13 @@ const rarityColor: Record<string, string> = {
       <div class="grid">
         {cards.map((card) => (
           <article class="card">
-            <div class="card-art" style={card.image ? `background-image:url('${card.image}');background-size:contain;background-position:center;background-repeat:no-repeat;` : ''}>
-              {!card.image && (
-                <span class="card-type-badge" style={`color:${rarityColor[card.rarity]};border-color:${rarityColor[card.rarity]}`}>
-                  {card.rarity}
-                </span>
-              )}
-            </div>
+            <div class="card-art" style={`background-image:url('${card.image}')`}></div>
             <div class="card-body">
               <h2 class="card-name">{card.name}</h2>
               <p class="card-type">{card.type}</p>
+              {card.rarity && (
+                <p class="card-rarity" style={`color:${rarityColor[card.rarity]}`}>{card.rarity}</p>
+              )}
               {card.power !== undefined && (
                 <div class="stats">
                   <span title="Power">⚔ {card.power}</span>
@@ -176,22 +174,10 @@ const rarityColor: Record<string, string> = {
 
   .card-art {
     aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 60%, #1a0a0a 100%);
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 0.75rem;
-  }
-
-  .card-type-badge {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid;
-    padding: 0.2rem 0.5rem;
-    border-radius: 20px;
-    font-family: var(--font-heading);
+    background-color: #1a0a0a;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .card-body {
@@ -204,12 +190,20 @@ const rarityColor: Record<string, string> = {
     margin-bottom: 0.2rem;
   }
 
+  .card-rarity {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
   .card-type {
     font-size: 0.75rem;
     color: var(--color-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
   }
 
   .stats {
