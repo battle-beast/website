@@ -7,13 +7,17 @@ const cards = [
   { name: 'Flaming Phoenix', type: 'Elemental',power: 350,  defense: 250, rarity: 'Legendary', image: '/flaming_phoenix.png' },
   { name: 'Stone Golem',     type: 'Guardian', power: 250,  defense: 400, rarity: 'Uncommon',  image: '/stone_golem.png' },
   { name: 'Thunder Wolf',    type: 'Beast',    power: 300,  defense: 200, rarity: 'Common',    image: '/thunder_wolf.png' },
-  { name: 'Void Dragon',     type: 'Predator', power: 1000, defense: 600, rarity: 'Legendary' },
-  { name: 'Coral Hydra',     type: 'Beast',    power: 500,  defense: 700, rarity: 'Rare' },
-  { name: 'Ember Lynx',      type: 'Elemental',power: 700,  defense: 300, rarity: 'Common' },
-  { name: 'Frost Mammoth',   type: 'Guardian', power: 400,  defense: 800, rarity: 'Uncommon' },
-  { name: 'Venom Mantis',    type: 'Predator', power: 800,  defense: 200, rarity: 'Rare' },
-  { name: 'Storm Hawk',      type: 'Beast',    power: 500,  defense: 400, rarity: 'Common' },
-  { name: 'Ash Wurm',        type: 'Elemental',power: 600,  defense: 600, rarity: 'Uncommon' },
+  { name: 'Kitsune X-Ultra',  type: 'Predator', power: 900,  defense: 1200, rarity: 'Uncommon', image: '/kitsune_x_ultra.png' },
+  { name: 'Venom Mantis X-Ultra', type: 'Predator', power: 850, defense: 1350, rarity: 'Legendary', image: '/venom_mantis.png' },
+  { name: 'Armoured Dillo',  type: 'Guardian', power: 550,  defense: 700, rarity: 'Rare',      image: '/armoured_dillo.png' },
+  { name: 'Boxing Jellyfish',type: 'Beast',    power: 400,  defense: 250, rarity: 'Uncommon',  image: '/boxing_jellyfish.png' },
+  { name: 'Fireforged Skull Devil', type: 'Predator', power: 750, defense: 500, rarity: 'Rare', image: '/fireforged_skull_devil.png' },
+  { name: 'Giant Cloud',     type: 'Elemental',power: 650,  defense: 800, rarity: 'Legendary', image: '/giant_cloud.png' },
+  { name: 'Dragon Claw',     type: 'Equipment', rarity: 'Common', image: '/dragon_claw.png' },
+  { name: 'Metal Shield',    type: 'Equipment', rarity: 'Common', image: '/metal_shield.png' },
+  { name: 'Fossil of Healing', type: 'Equipment', rarity: 'Common', image: '/fossil_of_healing.png' },
+  { name: 'Demonic Goblin',  type: 'Predator', power: 950,  defense: 1100, rarity: 'Legendary', image: '/demonic_goblin.png' },
+  { name: 'The G.O.A.T.',    type: 'Beast',    power: 50,   defense: 100, rarity: 'Common',    image: '/the_goat.png' },
 ];
 
 const rarityColor: Record<string, string> = {
@@ -45,10 +49,12 @@ const rarityColor: Record<string, string> = {
             <div class="card-body">
               <h2 class="card-name">{card.name}</h2>
               <p class="card-type">{card.type}</p>
-              <div class="stats">
-                <span title="Power">⚔ {card.power}</span>
-                <span title="Defense">🛡 {card.defense}</span>
-              </div>
+              {card.power !== undefined && (
+                <div class="stats">
+                  <span title="Power">⚔ {card.power}</span>
+                  <span title="Defense">🛡 {card.defense}</span>
+                </div>
+              )}
             </div>
           </article>
         ))}
