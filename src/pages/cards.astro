@@ -143,7 +143,12 @@ const rarityColor: Record<string, string> = {
       <div class="grid">
         {cards.map((card, i) => (
           <article class="card">
-            <button class="card-art" popovertarget={`card-${i}`} aria-label={`View ${card.name}`} style={`background-image:url('${card.image}')`}></button>
+            <button
+              class="card-art"
+              popovertarget={`card-${i}`}
+              aria-label={`View ${card.name}`}
+              style={`background-image:url('${card.image}')`}
+            ></button>
             <div id={`card-${i}`} class="preview" popover>
               <img src={card.image} alt={card.name} />
             </div>
