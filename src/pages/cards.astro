@@ -141,9 +141,12 @@ const rarityColor: Record<string, string> = {
       </p>
 
       <div class="grid">
-        {cards.map((card) => (
+        {cards.map((card, i) => (
           <article class="card">
-            <div class="card-art" style={`background-image:url('${card.image}')`}></div>
+            <button class="card-art" popovertarget={`card-${i}`} aria-label={`View ${card.name}`} style={`background-image:url('${card.image}')`}></button>
+            <div id={`card-${i}`} class="preview" popover>
+              <img src={card.image} alt={card.name} />
+            </div>
             <div class="card-body">
               <h2 class="card-name">{card.name}</h2>
               <p class="card-type">{card.type}</p>
@@ -181,6 +184,7 @@ const rarityColor: Record<string, string> = {
     transition:
       transform 0.15s,
       border-color 0.15s;
+    position: relative;
   }
 
   .card:hover {
@@ -188,12 +192,70 @@ const rarityColor: Record<string, string> = {
     border-color: var(--color-accent);
   }
 
+  .grid:has(.preview:popover-open) .card {
+    pointer-events: none;
+  }
+
   .card-art {
+    display: block;
+    width: 100%;
+    border: 0;
+    cursor: pointer;
     aspect-ratio: 3/4;
     background-color: #1a0a0a;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  .card-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .preview {
+    pointer-events: auto;
+    margin: auto;
+    border: 0;
+    padding: 0;
+    background: none;
+  }
+
+  @media (min-width: 681px) and (prefers-reduced-motion: no-preference) {
+    .preview {
+      opacity: 0;
+      transform: scale(0.2);
+      transition:
+        opacity 0.5s,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        overlay 0.5s allow-discrete,
+        display 0.5s allow-discrete;
+    }
+
+    .preview:popover-open {
+      opacity: 1;
+      transform: none;
+    }
+
+    @starting-style {
+      .preview:popover-open {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+    }
+  }
+
+  .preview::backdrop {
+    pointer-events: auto;
+    background: rgb(0 0 0 / 0.75);
+  }
+
+  .preview img {
+    display: block;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
   }
 
   .card-body {
