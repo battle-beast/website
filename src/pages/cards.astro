@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 const cards = [
   {
@@ -120,20 +120,24 @@ const cards = [
 ];
 
 const rarityColor: Record<string, string> = {
-  Common:    '#888',
-  Uncommon:  '#4a9eff',
-  Rare:      '#c850c0',
-  'Ultra Rare': '#ff6b35',
-  Legendary: '#D4AF37',
+  Common: "#888",
+  Uncommon: "#4a9eff",
+  Rare: "#c850c0",
+  "Ultra Rare": "#ff6b35",
+  Legendary: "#D4AF37",
 };
 ---
 
-<Layout title="Cards" description="Browse all Battle Beast cards - beasts, predators, elementals, and guardians.">
+<Layout
+  title="Cards"
+  description="Browse all Battle Beast cards - beasts, predators, elementals, and guardians."
+>
   <section class="section">
     <div class="container">
       <h1 class="section-title">The Cards</h1>
       <p class="section-subtitle">
-        100+ creatures across four types. Each card has unique power, defense, and special abilities.
+        100+ creatures across four types. Each card has unique power, defense, and special
+        abilities.
       </p>
 
       <div class="grid">
@@ -144,7 +148,9 @@ const rarityColor: Record<string, string> = {
               <h2 class="card-name">{card.name}</h2>
               <p class="card-type">{card.type}</p>
               {card.rarity && (
-                <p class="card-rarity" style={`color:${rarityColor[card.rarity]}`}>{card.rarity}</p>
+                <p class="card-rarity" style={`color:${rarityColor[card.rarity]}`}>
+                  {card.rarity}
+                </p>
               )}
               {card.power !== undefined && (
                 <div class="stats">
@@ -172,7 +178,9 @@ const rarityColor: Record<string, string> = {
     border: 1px solid #1f1f1f;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.15s, border-color 0.15s;
+    transition:
+      transform 0.15s,
+      border-color 0.15s;
   }
 
   .card:hover {
@@ -221,5 +229,9 @@ const rarityColor: Record<string, string> = {
     color: var(--color-muted);
   }
 
-  .stats span { display: flex; align-items: center; gap: 0.25rem; }
+  .stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 </style>
